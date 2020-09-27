@@ -1,7 +1,8 @@
 use colored::*;
+use std::process;
 
 pub fn success(title: &str, message: &str){
-    println!("{} {}", title.green().bold(), message);
+    ("{} {}", title.green().bold(), message);
 }
 
 pub fn warning(title: &str, message: &str){
@@ -14,4 +15,9 @@ pub fn error(title: &str, message: &str){
 
 pub fn info(title: &str, message: &str){
     println!("{} {}", title.bold(), message);
+}
+
+pub fn stop(title: &str, message: &str){
+    error(title, message);
+    process::exit(1);
 }

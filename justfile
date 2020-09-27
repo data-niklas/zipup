@@ -1,14 +1,28 @@
 clean:
     cargo clean
 
-run:
-    cargo run
+run *ARGS:
+    cargo run -- {{ARGS}}
 
 build:
     cargo build
 
-brun: build
-    ./target/debug/zipup
+release:
+    cargo build --release
+
+install:
+    cp ./target/release/zipup $SCRIPTS/bin/
+
+brun *ARGS: build
+    ./target/debug/zipup {{ARGS}}
+
+crun *ARGS:
+    ./target/debug/zipup {{ARGS}}
+
+rinstall: release install
+
+test backup:
+    cargo run -- --backup ./test/zipup.conf
 
 
 
